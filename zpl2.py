@@ -35,6 +35,28 @@ ARG_IN_BLOCK = 'in_block'
 ARG_COLOR = 'color'
 ARG_ROUNDING = 'rounding'
 ARG_DIAMETER = 'diameter'
+ARG_QRMODEL = 'qrmodel'
+ARG_QRMAGNIFICATION = 'qrmagnification'
+ARG_QRERRORCORRECTION = 'qrerrorcorrection'
+ARG_QRMASK = 'qrmask'
+
+# QR Code Model values
+QRMODEL_ORIGINAL = 1
+QRMODEL_ENHANCED = 2
+
+# QR Code Magnification Factor
+QRMAGNIFICATION_150DPI = 1
+QRMAGNIFICATION_200DPI = 2
+QRMAGNIFICATION_300DPI = 3
+QRMAGNIFICATION_400DPI = 4
+QRMAGNIFICATION_500DPI = 5
+QRMAGNIFICATION_600DPI = 6
+
+# QR Code Error Correction
+QRERRORCORRECTION_ULTRA_HIGH = 'H'
+QRERRORCORRECTION_HIGH = 'Q'
+QRERRORCORRECTION_STANDARD = 'M'
+QRERRORCORRECTION_HIGH_DENSITY = 'L'
 
 # Boolean values
 BOOL_YES = 'Y'
@@ -76,6 +98,7 @@ BARCODE_EAN_8 = 'ean-8'
 BARCODE_UPC_E = 'upc-e'
 BARCODE_CODE_128 = 'code_128'
 BARCODE_EAN_13 = 'ean-13'
+BARCODE_QRCODE = 'qrcode'
 
 
 class Zpl2(object):
@@ -292,6 +315,16 @@ class Zpl2(object):
             ]
             return 'E' + self._generate_arguments(arguments, kwargs)
 
+        def _qrcode(**kwargs):
+            arguments = [
+                ARG_ORIENTATION,
+                ARG_QRMODEL,
+                ARG_QRMAGNIFICATION,
+                ARG_QRERRORCORRECTION,
+                ARG_QRMASK,
+            ]
+            return 'Q' + self._generate_arguments(arguments, kwargs)
+
         barcodeTypes = {
             BARCODE_CODE_11: _code11,
             BARCODE_INTERLEAVED_2_OF_5: _interleaved2of5,
@@ -302,6 +335,7 @@ class Zpl2(object):
             BARCODE_UPC_E: _upce,
             BARCODE_CODE_128: _code128,
             BARCODE_EAN_13: _ean13,
+            BARCODE_QRCODE: _qrcode,
         }
         return '^B' + barcodeTypes[barcodeType](**barcode_format)
 
