@@ -35,10 +35,10 @@ ARG_IN_BLOCK = 'in_block'
 ARG_COLOR = 'color'
 ARG_ROUNDING = 'rounding'
 ARG_DIAMETER = 'diameter'
-ARG_QRMODEL = 'qrmodel'
-ARG_QRMAGNIFICATION = 'qrmagnification'
-ARG_QRERRORCORRECTION = 'qrerrorcorrection'
-ARG_QRMASK = 'qrmask'
+ARG_QRMODEL = 'model'
+ARG_QRMAGNIFICATION = 'magnification_factor'
+ARG_QRERRORCORRECTION = 'error_correction'
+ARG_QRMASK = 'mask_value'
 
 # QR Code Model values
 QRMODEL_ORIGINAL = 1
